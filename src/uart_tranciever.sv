@@ -13,7 +13,8 @@ module uart_tranciever#(
     output logic        tx_done_tick_o,
     output logic        tx_active_o,
     output logic [7:0]  rx_dout_o,
-    output logic        rx_done_tick_o
+    output logic        rx_done_tick_o,
+    output logic        rx_active_o
 );
 
 localparam int c_timerlim = c_clkfreq/c_baudrate;
@@ -42,7 +43,8 @@ uart_rx#(
     .rstn_i(rstn_i),
     .rx_i(rx_din_i),
     .rx_dout_o(rx_dout_o),
-    .rx_done_tick_o(rx_done_tick_o)
+    .rx_done_tick_o(rx_done_tick_o),
+    .rx_active_o(rx_active_o)
 );
 
 endmodule

@@ -2,7 +2,7 @@ SV_FILES = ${wildcard ./src/*.sv}
 TB_FILES = ${wildcard ./tb/*.sv}
 ALL_FILES = ${SV_FILES} ${TB_FILES}
 
-TOP ?= tb_uart_tx
+TOP ?= tb_uart_rx
 
 lint:
 	@echo "Running lint checks..."

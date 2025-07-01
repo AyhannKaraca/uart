@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Tue Jul  1 03:13:58 2025
+[*]
+[dumpfile] "/home/ayhan/uart/dump.vcd"
+[dumpfile_mtime] "Tue Jul  1 03:05:54 2025"
+[dumpfile_size] 21276
+[savefile] "/home/ayhan/uart/rx_wave.gtkw"
+[timestart] 624
+[size] 1920 973
+[pos] -27 -24
+*-7.669728 1215 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_uart_rx.
+[sst_width] 297
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 299
+@28
+tb_uart_rx.clk
+tb_uart_rx.rstn
+@22
+tb_uart_rx.dout[7:0]
+@28
+tb_uart_rx.rx_active
+tb_uart_rx.rx_done_tick
+@29
+tb_uart_rx.rx
+@28
+tb_uart_rx.i_uart_rx.state[1:0]
+tb_uart_rx.c_00[9:0]
+tb_uart_rx.c_ab[9:0]
+tb_uart_rx.c_fd[9:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -6,7 +6,8 @@ module uart_rx#(
     input  logic        rstn_i,
     input  logic        rx_i,
     output logic [7:0]  rx_dout_o,
-    output logic        rx_done_tick_o
+    output logic        rx_done_tick_o,
+    output logic        rx_active_o
 );
 
 localparam int c_timerlim = c_clkfreq/c_baudrate; //10 * 10ns = 100ns = 10Mbps
@@ -19,6 +20,7 @@ logic [7:0 ] shreg;
 logic [2:0 ] bitcntr;
 
 assign rx_dout_o = shreg;
+assign rx_active_o = (state == S_DATA);
 
 always_ff @(posedge clk_i) begin : OUT_UPDATE_FF
     if(!rstn_i)begin
@@ -31,6 +33,7 @@ always_ff @(posedge clk_i) begin : OUT_UPDATE_FF
       case(state)
         S_IDLE: begin
             rx_done_tick_o <= 0;
+            shreg          <= '0;
             if(!rx_i) begin
                 state <= S_START;
             end

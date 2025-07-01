@@ -5,14 +5,20 @@ module tb_uart_rx();
     logic [7:0]  dout;
     logic        rx;
     logic        rx_done_tick;
+    logic        rx_active;
 
     uart_rx i_uart_rx(
         .clk_i(clk),
         .rstn_i(rstn),
         .rx_i(rx),
         .rx_dout_o(dout),
-        .rx_done_tick_o(rx_done_tick)
+        .rx_done_tick_o(rx_done_tick),
+        .rx_active_o(rx_active)
     );
+
+    logic [9:0] c_00 = {1'b1,8'h00,1'b0};
+    logic [9:0] c_ab = {1'b1,8'hab,1'b0};
+    logic [9:0] c_fd = {1'b1,8'hfd,1'b0};
 
     initial forever begin
         clk = 0;
@@ -24,33 +30,20 @@ module tb_uart_rx();
         rstn = 0;
         #100;
         rstn = 1;
-
-
-        rx	 = 0;
-        #100;
-
-
-        rx	 = 1; //10101011 0xAB
-        #100;
-        rx	 = 1;
-        #100;
-        rx	 = 0;
-        #100;
-        rx	 = 1;
-        #100;
-        rx	 = 0;
-        #100;
-        rx	 = 1;
-        #100;
-        rx	 = 0;
-        #100;
-        rx	 = 1;
-        #100;
-        rx	 = 1;
-        #100;
-        rx	 = 1;
-        #100;
-
+        for(int i = 0; i<10; i++)begin
+            rx = c_00[i];
+            #100;
+        end
+        #400;
+        for(int i = 0; i<10; i++)begin
+            rx = c_ab[i];
+            #100;
+        end
+        #400;
+        for(int i = 0; i<10; i++)begin
+            rx = c_fd[i];
+            #100;
+        end
         #300;
         $finish;
     end
